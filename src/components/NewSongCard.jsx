@@ -4,7 +4,7 @@ import { useDispatch } from "react-redux";
 import PlayPause from "./PlayPause";
 import { playPause, setActiveSong } from "../redux/features/playerSlice";
 
-const SongCard = ({ song, isPlaying, activeSong, i, data }) => {
+const NewSongCard = ({ song, isPlaying, activeSong, i, data }) => {
   const dispatch = useDispatch();
   const handlePauseClick = () => {
     dispatch(playPause(false));
@@ -31,21 +31,21 @@ const SongCard = ({ song, isPlaying, activeSong, i, data }) => {
             handlePlay={handlePlayClick}
           />
         </div>
-        <img src={song.images?.coverart} alt="song_img" />
+        <img src={song.attributes.artwork.url} alt="song_img" />
       </div>
       <div className="mt-4 flex flex-col">
         <p className="font-semibold text-lg text-white truncate">
-          <Link to={`/songs/${song?.key}`}>{song.title}</Link>
+          <Link to={`/songs/${song?.id}`}>{song.attributes.name}</Link>
         </p>
         <p className="text-sm truncate text-gray-300 mt-1">
           <Link
             to={
               song.artists
-                ? `/artists/${song?.artists[0]?.adamid}`
+                ? `/artists/${song?.relationships.artists.data[0].id}`
                 : "/top-artists"
             }
           >
-            {song.subtitle}
+            {song.attributes.artistName}
           </Link>
         </p>
       </div>
@@ -53,4 +53,4 @@ const SongCard = ({ song, isPlaying, activeSong, i, data }) => {
   );
 };
 
-export default SongCard;
+export default NewSongCard;

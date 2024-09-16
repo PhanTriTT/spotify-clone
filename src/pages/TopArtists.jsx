@@ -1,5 +1,5 @@
-import { Error, Loader, ArtistCard } from '../components';
-import { useGetTopChartsQuery } from '../redux/services/shazamCore';
+import { Error, Loader, ArtistCard } from "../components";
+import { useGetTopChartsQuery } from "../redux/services/shazamCore";
 
 const TopArtists = () => {
   const { data, isFetching, error } = useGetTopChartsQuery();
@@ -17,7 +17,7 @@ const TopArtists = () => {
       </h2>
       <div className="flex flex-wrap sm:justify-start justify-center gap-8">
         {data?.map((track) => (
-          <ArtistCard track={track} key={track.key} />
+          <ArtistCard track={track} key={track.id} />
         ))}
       </div>
     </div>

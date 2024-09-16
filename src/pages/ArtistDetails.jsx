@@ -1,7 +1,7 @@
-import { useParams } from 'react-router-dom';
-import { useSelector } from 'react-redux';
-import { DetailsHeader, Error, Loader, RelatedSongs } from '../components';
-import { useGetArtistDetailsQuery } from '../redux/services/shazamCore';
+import { useParams } from "react-router-dom";
+import { useSelector } from "react-redux";
+import { DetailsHeader, Error, Loader, RelatedSongs } from "../components";
+import { useGetArtistDetailsQuery } from "../redux/services/shazamCore";
 
 const ArtistDetails = () => {
   const { id: artistId } = useParams();
@@ -21,7 +21,7 @@ const ArtistDetails = () => {
       <DetailsHeader artistId={artistId} artistData={artistData} />
 
       <RelatedSongs
-        data={Object.values(artistData?.songs)}
+        data={Object.values(artistData?.data[0].views.playlists.data)}
         isPlaying={isPlaying}
         activeSong={activeSong}
         artistId={artistId}

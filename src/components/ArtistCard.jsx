@@ -1,4 +1,4 @@
-import { useNavigate } from 'react-router-dom';
+import { useNavigate } from "react-router-dom";
 
 const ArtistCard = ({ track }) => {
   const navigate = useNavigate();
@@ -8,12 +8,12 @@ const ArtistCard = ({ track }) => {
       onClick={() => navigate(`/artists/${track?.artists[0].adamid}`)}
     >
       <img
-        src={track?.images?.coverart}
+        src={track?.attributes.artwork.url}
         alt="artist"
         className="w-full h-56 rounded-lg"
       />
       <p className="mt-4 font-semibold text-lg text-white truncate">
-        {track?.subtitle}
+        {track?.attributes.artistName}
       </p>
     </div>
   );

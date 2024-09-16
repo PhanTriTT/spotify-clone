@@ -1,18 +1,19 @@
-import { useState, useEffect } from 'react';
-import axios from 'axios';
-import { useSelector } from 'react-redux';
-import { Error, Loader, SongCard } from '../components';
-import { useGetSongsByCountryQuery } from '../redux/services/shazamCore';
+import { useState, useEffect } from "react";
+import axios from "axios";
+import { useSelector } from "react-redux";
+import { Error, Loader, SongCard } from "../components";
+import { useGetSongsByCountryQuery } from "../redux/services/shazamCore";
+import NewSongCard from "../components/NewSongCard";
 
 const AroundYou = () => {
-  const [country, setCountry] = useState('US');
+  const [country, setCountry] = useState("US");
   const [loading, setLoading] = useState(true);
   const { activeSong, isPlaying } = useSelector((state) => state.player);
   const { data, isFetching, error } = useGetSongsByCountryQuery(country);
   useEffect(() => {
     axios
       .get(
-        'https://geo.ipify.org/api/v2/country?apiKey=at_TkFXCDCbnLWiTqNr7tOkQj9AoIAPM'
+        "https://geo.ipify.org/api/v2/country?apiKey=at_TkFXCDCbnLWiTqNr7tOkQj9AoIAPM"
       )
       .then((response) => setCountry(response?.data?.location?.country))
       .catch((err) => console.log(err))
@@ -31,13 +32,13 @@ const AroundYou = () => {
       </h2>
       <div className="flex flex-wrap sm:justify-start justify-center gap-8">
         {data?.map((song, i) => (
-          <SongCard
+          <NewSongCard
             data={data}
             i={i}
             song={song}
             isPlaying={isPlaying}
             activeSong={activeSong}
-            key={song.key}
+            key={song.id}
           />
         ))}
       </div>

@@ -1,4 +1,4 @@
-import SongBar from './SongBar';
+import SongBar from "./SongBar";
 
 const RelatedSongs = ({
   data,
@@ -13,7 +13,7 @@ const RelatedSongs = ({
     <div>
       {data?.map((song, i) => (
         <SongBar
-          key={`${song.key}-${artistId}`}
+          key={`${song.id}-${artistId}`}
           song={song}
           i={i}
           artistId={artistId}

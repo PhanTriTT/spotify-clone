@@ -1,6 +1,7 @@
-import { useSelector } from 'react-redux';
-import { Error, Loader, SongCard } from '../components';
-import { useGetTopChartsQuery } from '../redux/services/shazamCore';
+import { useSelector } from "react-redux";
+import { Error, Loader, SongCard } from "../components";
+import { useGetTopChartsQuery } from "../redux/services/shazamCore";
+import NewSongCard from "../components/NewSongCard";
 
 const TopCharts = () => {
   const { activeSong, isPlaying } = useSelector((state) => state.player);
@@ -19,13 +20,13 @@ const TopCharts = () => {
       </h2>
       <div className="flex flex-wrap sm:justify-start justify-center gap-8">
         {data?.map((song, i) => (
-          <SongCard
+          <NewSongCard
             data={data}
             i={i}
             song={song}
             isPlaying={isPlaying}
             activeSong={activeSong}
-            key={song.key}
+            key={song.id}
           />
         ))}
       </div>
